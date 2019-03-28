@@ -94,19 +94,25 @@ dependencies {
 
 **Android v1.6.6 版本后新增 notifyJSDidLoad，请务必在接收事件之前调用此方法。**
 
-* [API](documents/api_en.md)
+```
+_setAlias(hyb_id) {
+        //android平台设置别名方法
+        let self = this;
+        if (Platform.OS === 'android') {
+            JPushModule.notifyJSDidLoad((resultCode) => {
+                //console.log("resultCode: " + resultCode);
+                if (resultCode === 0) {
+                }
+                self._setCommonAlias(hyb_id);
+            });
+        } else if (Platform.OS === 'ios') {
+            self._setCommonAlias(hyb_id);
+        }
+    }
+```
 
 ### 关于点击通知跳转到指定界面
 
 * Android v1.6.7 新增 API `jumpToPushActivity`，使用参考 [demo](example/App.js#L113)
 
-## [常见问题](./documents/common_problems.md)
 
----
-
-## 贡献者列表
-
-* [bang88](https://github.com/bang88)
-* [pampang](https://github.com/pampang)
-* [huhuanming](https://github.com/huhuanming)
-* [arniu](https://github.com/arniu)
