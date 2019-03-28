@@ -103,11 +103,21 @@ _setAlias(hyb_id) {
                 //console.log("resultCode: " + resultCode);
                 if (resultCode === 0) {
                 }
-                self._setCommonAlias(hyb_id);
+               
             });
         } else if (Platform.OS === 'ios') {
             self._setCommonAlias(hyb_id);
         }
+    }
+    
+    _setCommonAlias(hyb_id) {
+        JPushModule.setAlias(hyb_id, map => {
+            if (map.errorCode === 0) {
+                //console.log('set alias succeed')
+            } else {
+                console.log('set alias failed, errorCode: ' + map.errorCode)
+            }
+        })
     }
 ```
 
